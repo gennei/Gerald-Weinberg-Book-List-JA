@@ -134,3 +134,19 @@ main {
   content: '▼';
   color: #2563eb;
 }
+
+/* Site Info Styles */
+.site-info {
+  margin-top: 8px;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.site-info a {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.site-info a:hover {
+  text-decoration: underline;
+}
