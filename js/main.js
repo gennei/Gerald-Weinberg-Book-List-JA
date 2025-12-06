@@ -4,13 +4,13 @@
 const columns = [
   { key: 'title', label: 'タイトル', sortable: true, sortKey: 'titleYomigana' },
   { key: 'author', label: '著者', sortable: false },
-  { key: 'publisher', label: '出版社', sortable: false },
   { key: 'year', label: '出版年', sortable: true, sortKey: 'year' },
+  { key: 'publisher', label: '出版社', sortable: false },
   { key: 'isbn', label: 'ISBN', sortable: false },
   { key: 'originalTitle', label: '原著タイトル', sortable: true, sortKey: 'originalTitle', linkUrlKey: 'authorSiteUrl' },
   { key: 'originalYear', label: '原著出版年', sortable: true, sortKey: 'originalYear' },
   { key: 'originalPublisher', label: '原著出版社', sortable: false },
-  { key: 'asin', label: 'ASIN', sortable: false, linkUrlKey: 'amazonUrl' },
+  { key: 'asin', label: 'ASIN(JP)', sortable: false, linkUrlKey: 'amazonUrl' },
   { key: 'category', label: 'カテゴリ', sortable: false }
 ];
 
