@@ -121,6 +121,21 @@
       "category": "Leadership, Non-Fiction"
     },
     {
+      "title": "要求仕様の探検学",
+      "titleYomigana": "ようきゅうしようのたんけんがく",
+      "author": "Donald C. Gause, Gerald M. Weinberg; 黒田 純一郎 監訳, 柳川 志津子 訳",
+      "publisher": "共立出版",
+      "year": 1993,
+      "isbn": "4-320-02352-8",
+      "originalTitle": "Exploring Requirements: Quality Before Design",
+      "originalYear": 1989,
+      "originalPublisher": "Dorset House Publishing",
+      "asin": "4320023528",
+      "amazonUrl": "https://www.amazon.co.jp/dp/4320023528",
+      "authorSiteUrl": "https://geraldmweinberg.com/Site/Exploring_Requirements.html",
+      "category": "Non-Fiction, Quality"
+    },
+    {
       "title": "プログラミングの心理学",
       "titleYomigana": "ぷろぐらみんぐのしんりがく",
       "author": "Gerald M. Weinberg; 木村 泉 他訳",
@@ -237,8 +252,8 @@
       "originalPublisher": "Dorset House Publishing",
       "asin": "4798111228",
       "amazonUrl": "https://www.amazon.co.jp/dp/4798111228",
-      "authorSiteUrl": null,
-      "category": null
+      "authorSiteUrl": "https://geraldmweinberg.com/Site/On_Writing.html",
+      "category": "Non-Fiction"
     },
     {
       "title": "パーフェクトソフトウェア",
