@@ -54,6 +54,7 @@ main {
   background-color: #fff;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   font-size: 0.875rem;
+  table-layout: fixed;
 }
 
 /* Table Header */
@@ -68,6 +69,25 @@ main {
   color: #374151;
   border-bottom: 2px solid #e5e7eb;
   white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Resize Handle */
+#book-table th .resizer {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 5px;
+  height: 100%;
+  cursor: col-resize;
+  user-select: none;
+}
+
+#book-table th .resizer:hover,
+#book-table th .resizer.resizing {
+  background-color: #2563eb;
 }
 
 /* Table Body */
@@ -75,6 +95,17 @@ main {
   padding: 10px 8px;
   border-bottom: 1px solid #e5e7eb;
   vertical-align: top;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#book-table td:nth-child(5) {
+  white-space: nowrap;
+}
+
+/* Prevent text selection during resize */
+#book-table.resizing {
+  user-select: none;
 }
 
 #book-table tbody tr:hover {

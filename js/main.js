@@ -7,12 +7,10 @@ const columns = [
   { key: 'publisher', label: '出版社', sortable: false },
   { key: 'year', label: '出版年', sortable: true, sortKey: 'year' },
   { key: 'isbn', label: 'ISBN', sortable: false },
-  { key: 'originalTitle', label: '原著タイトル', sortable: true, sortKey: 'originalTitle' },
+  { key: 'originalTitle', label: '原著タイトル', sortable: true, sortKey: 'originalTitle', linkUrlKey: 'authorSiteUrl' },
   { key: 'originalYear', label: '原著出版年', sortable: true, sortKey: 'originalYear' },
   { key: 'originalPublisher', label: '原著出版社', sortable: false },
-  { key: 'asin', label: 'ASIN', sortable: false },
-  { key: 'amazonUrl', label: 'Amazon', sortable: false, isLink: true, linkText: 'Amazon' },
-  { key: 'authorSiteUrl', label: '著者サイト', sortable: false, isLink: true, linkText: 'リンク' },
+  { key: 'asin', label: 'ASIN', sortable: false, linkUrlKey: 'amazonUrl' },
   { key: 'category', label: 'カテゴリ', sortable: false }
 ];
 
@@ -87,13 +85,63 @@ function renderTableHeader() {
     if (column.sortable) {
       th.classList.add('sortable');
       th.dataset.sortKey = column.sortKey;
-      th.addEventListener('click', () => handleSort(column.sortKey));
+      th.addEventListener('click', (e) => {
+        // Don't trigger sort when clicking on resizer
+        if (!e.target.classList.contains('resizer')) {
+          handleSort(column.sortKey);
+        }
+      });
     }
+
+    // Add resizer element
+    const resizer = document.createElement('div');
+    resizer.classList.add('resizer');
+    th.appendChild(resizer);
 
     headerRow.appendChild(th);
   });
 
   tableHeader.appendChild(headerRow);
+
+  // Initialize column resizing
+  initColumnResize();
+}
+
+/**
+ * Initialize column resize functionality
+ */
+function initColumnResize() {
+  const resizers = document.querySelectorAll('#book-table th .resizer');
+
+  resizers.forEach(resizer => {
+    let startX, startWidth, th;
+
+    resizer.addEventListener('mousedown', (e) => {
+      th = resizer.parentElement;
+      startX = e.pageX;
+      startWidth = th.offsetWidth;
+      resizer.classList.add('resizing');
+      tableElement.classList.add('resizing');
+
+      document.addEventListener('mousemove', onMouseMove);
+      document.addEventListener('mouseup', onMouseUp);
+      e.preventDefault();
+    });
+
+    function onMouseMove(e) {
+      const width = startWidth + (e.pageX - startX);
+      if (width > 30) {
+        th.style.width = width + 'px';
+      }
+    }
+
+    function onMouseUp() {
+      resizer.classList.remove('resizing');
+      tableElement.classList.remove('resizing');
+      document.removeEventListener('mousemove', onMouseMove);
+      document.removeEventListener('mouseup', onMouseUp);
+    }
+  });
 }
 
 /**
@@ -119,12 +167,26 @@ function createCell(book, column) {
   const value = book[column.key];
 
   if (column.isLink && value) {
+    // Link column: value is the URL, linkText is the display text
     const link = document.createElement('a');
     link.href = value;
     link.textContent = column.linkText;
     link.target = '_blank';
     link.rel = 'noopener noreferrer';
     td.appendChild(link);
+  } else if (column.linkUrlKey && value) {
+    // Linked value column: value is displayed, linkUrlKey provides the URL
+    const url = book[column.linkUrlKey];
+    if (url) {
+      const link = document.createElement('a');
+      link.href = url;
+      link.textContent = value;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      td.appendChild(link);
+    } else {
+      td.textContent = formatCellValue(value);
+    }
   } else {
     td.textContent = formatCellValue(value);
   }
