@@ -1,0 +1,136 @@
+/* Weinberg Book List Styles */
+
+/* Reset and Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f5f5f5;
+  padding: 20px;
+}
+
+/* Header Styles */
+header {
+  margin-bottom: 24px;
+}
+
+header h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #222;
+}
+
+/* Main Content */
+main {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+/* Loading and Error States */
+#loading {
+  padding: 40px;
+  text-align: center;
+  color: #666;
+}
+
+#error {
+  padding: 20px;
+  background-color: #fee2e2;
+  border: 1px solid #ef4444;
+  border-radius: 4px;
+  color: #b91c1c;
+}
+
+/* Table Styles */
+#book-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  font-size: 0.875rem;
+}
+
+/* Table Header */
+#book-table thead {
+  background-color: #f8f9fa;
+}
+
+#book-table th {
+  padding: 12px 8px;
+  text-align: left;
+  font-weight: 600;
+  color: #374151;
+  border-bottom: 2px solid #e5e7eb;
+  white-space: nowrap;
+}
+
+/* Table Body */
+#book-table td {
+  padding: 10px 8px;
+  border-bottom: 1px solid #e5e7eb;
+  vertical-align: top;
+}
+
+#book-table tbody tr:hover {
+  background-color: #f9fafb;
+}
+
+#book-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Links */
+#book-table a {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+#book-table a:hover {
+  text-decoration: underline;
+}
+
+/* Sortable Column Styles */
+#book-table th.sortable {
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  padding-right: 24px;
+  color: #1d4ed8;
+}
+
+#book-table th.sortable:hover {
+  background-color: #e5e7eb;
+}
+
+/* Default Sort Indicator - shows ⇅ to indicate sortable */
+#book-table th.sortable::after {
+  content: '⇅';
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+#book-table th.sortable:hover::after {
+  color: #6b7280;
+}
+
+/* Ascending Sort Indicator */
+#book-table th.sort-asc::after {
+  content: '▲';
+  color: #2563eb;
+}
+
+/* Descending Sort Indicator */
+#book-table th.sort-desc::after {
+  content: '▼';
+  color: #2563eb;
+}
